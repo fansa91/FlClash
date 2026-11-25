@@ -10,6 +10,12 @@ replace github.com/metacubex/mihomo => ./Clash.Meta
 // and http.HTTP2Config.ChromeFingerprint (used by transport/naive) is unknown.
 replace github.com/metacubex/http => ./Clash.Meta/third_party/http
 
+// Same reason as above: the kernel vendors its own uTLS fork under
+// third_party/utls to ship the Chrome 155 fingerprint. Without this line the
+// module graph falls back to metacubex/utls v1.9.0-alpha.1, which stops at
+// HelloChrome_133 and has no TrustAnchorsExtension.
+replace github.com/metacubex/utls => ./Clash.Meta/third_party/utls
+
 require (
 	github.com/Microsoft/go-winio v0.6.2
 	github.com/dlclark/regexp2 v1.12.0
