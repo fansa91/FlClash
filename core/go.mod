@@ -4,6 +4,12 @@ go 1.27.0
 
 replace github.com/metacubex/mihomo => ./Clash.Meta
 
+// The kernel's own `replace github.com/metacubex/http => ./third_party/http` only
+// applies when the kernel is the main module. Here `core` is the main module, so
+// the replace has to be repeated, otherwise the upstream metacubex/http is used
+// and http.HTTP2Config.ChromeFingerprint (used by transport/naive) is unknown.
+replace github.com/metacubex/http => ./Clash.Meta/third_party/http
+
 require (
 	github.com/Microsoft/go-winio v0.6.2
 	github.com/dlclark/regexp2 v1.12.0
